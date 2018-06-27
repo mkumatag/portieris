@@ -143,7 +143,11 @@ containerLoop:
 
 			// Get image digest
 			glog.Info("getting signed image...")
-			notaryURL, err := img.GetContentTrustURL()
+			var notaryURL string
+			if policy.Trust.Server != nil{
+				notaryURL = *policy.Trust.Server
+			}
+			notaryURL, err = img.GetContentTrustURL()
 			if err != nil {
 				a.StringToAdmissionResponse(fmt.Sprintf("Trust Server/Image Configuration Error: %v", err.Error()))
 				continue containerLoop

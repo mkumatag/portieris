@@ -97,6 +97,7 @@ type Policy struct {
 
 // Trust .
 type Trust struct {
+	Server        *string  `json:"server,omitempty"`
 	Enabled       *bool    `json:"enabled,omitempty"`
 	SignerSecrets []Signer `json:"signerSecrets,omitempty"`
 }
